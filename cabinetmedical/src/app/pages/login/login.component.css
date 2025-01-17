@@ -1,0 +1,121 @@
+/* Styles généraux pour la page de connexion */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../../../../assets/accc.jpg') no-repeat center center/cover; /* Image en arrière-plan */
+    background-size: cover; /* Assurez-vous que l'image couvre tout l'arrière-plan */
+    background-position: center;
+    filter: brightness(115%); /* Augmente la luminosité de l'image */
+    position: relative;
+  }
+  
+  
+  
+  /* Titre et description */
+  .login-header h1 {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .login-header p {
+    font-size: 16px;
+    color: #6c757d;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Formulaire de connexion */
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #343a40;
+    font-size: 14px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Bouton de connexion */
+  .btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-login:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Lien pour la création de compte */
+  .signup-link {
+    margin-top: 15px;
+  }
+  
+  .signup-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Styles responsive */
+  @media (max-width: 768px) {
+    .login-page {
+      background-position: top;
+    }
+  
+    .login-container {
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    .login-header h1 {
+      font-size: 24px;
+    }
+  
+    .login-header p {
+      font-size: 14px;
+    }
+  
+    .btn-login {
+      font-size: 16px;
+    }
+  
+    input {
+      font-size: 16px;
+    }
+  }
+  

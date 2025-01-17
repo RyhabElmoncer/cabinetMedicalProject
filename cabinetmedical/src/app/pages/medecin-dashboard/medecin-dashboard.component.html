@@ -1,0 +1,34 @@
+<div class="dashboard">
+    <header class="dashboard-header">
+      <h1>Tableau de Bord - Médecin</h1>
+      <p>Bienvenue dans votre espace professionnel.</p>
+    </header>
+  
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Rechercher un patient..."
+        [(ngModel)]="searchQuery"
+        (input)="filterPatients()"
+      />
+    </div>
+  
+    <div class="patients-section">
+      <h2>Liste des Patients</h2>
+      <ul class="patients-list">
+        <li *ngFor="let patient of filteredPatients" class="patient-card">
+          <div class="patient-info">
+            <h3>{{ patient.nom }}</h3>
+            <p><strong>Email :</strong> {{ patient.email }}</p>
+            <p><strong>Âge :</strong> {{ patient.age }} ans</p>
+          </div>
+          <div class="patient-actions">
+            <button class="btn-view" (click)="viewOrdonnances(patient)">
+              Voir Ordonnances
+            </button>
+            <button class="btn-add" (click)="addOrdonnance(patient)">
+              Ajouter Ordonnance
+            </button>
+          </div>
+        <
+  

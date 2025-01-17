@@ -1,0 +1,111 @@
+/* Style général */
+.dashboard {
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-header h1 {
+    color: #007bff;
+    font-size: 32px;
+  }
+  
+  .dashboard-header p {
+    color: #6c757d;
+    font-size: 16px;
+  }
+  
+  /* Barre de recherche */
+  .search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Section patients */
+  .patients-section h2 {
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .patients-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .patient-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .patient-info h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #343a40;
+  }
+  
+  .patient-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .patient-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .patient-actions button {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .btn-view {
+    background-color: #17a2b8;
+  }
+  
+  .btn-view:hover {
+    background-color: #138496;
+  }
+  
+  .btn-add {
+    background-color: #28a745;
+  }
+  
+  .btn-add:hover {
+    background-color: #218838;
+  }
+  
