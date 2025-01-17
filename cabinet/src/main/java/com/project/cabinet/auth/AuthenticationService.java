@@ -36,12 +36,15 @@ public class AuthenticationService {
       throw new IllegalArgumentException("L'email est déjà utilisé");
     }
 
+    // Set default role to PATIENT if no role is provided
+    var role = request.getRole() != null ? request.getRole() : Role.PATIENT;
+
     var user = User.builder()
             .username(request.getUsername())
             .lastName(request.getLastname())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
-            .role(request.getRole())
+            .role(role) // Assign the role here
             .build();
 
     repository.save(user);
@@ -55,7 +58,6 @@ public class AuthenticationService {
   }
 
 
-
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
     try {
       authenticationManager.authenticate(
@@ -64,29 +66,31 @@ public class AuthenticationService {
                       request.getPassword()
               )
       );
+
       var user = repository.findByEmail(request.getEmail())
               .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + request.getEmail()));
 
       var jwtToken = jwtService.generateToken(user);
       var refreshToken = jwtService.generateRefreshToken(user);
+
+      // Revoke and save tokens
       revokeAllUserTokens(user);
       saveUserToken(user, jwtToken);
 
-      if (user.getRole() == Role.PATIENT) {
-        // notificationService.fetchAndSendUnreadNotifications(user.getId());
-      }
-
+      // Include the role in the response
       return AuthenticationResponse.builder()
               .accessToken(jwtToken)
               .refreshToken(refreshToken)
-
+              .role(user.getRole().toString()) // Convert role to String
               .build();
+
     } catch (Exception e) {
       // Log exception for debugging
       System.err.println("Authentication failed: " + e.getMessage());
-      throw e; // Re-throw the exception to ensure the client gets the correct error response
+      throw e; // Re-throw exception
     }
   }
+
 
   private void saveUserToken(User user, String jwtToken) {
     Token token = Token.builder()
