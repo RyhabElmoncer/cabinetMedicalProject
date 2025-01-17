@@ -45,7 +45,7 @@ public class JwtService {
     Map<String, Object> extraClaims = new HashMap<>();
     extraClaims.put("id", user.getId());
     extraClaims.put("email", user.getEmail());
-    extraClaims.put("firstName", user.getFirstName());
+    extraClaims.put("Username", user.getUsername());
     extraClaims.put("lastName", user.getLastName());
     extraClaims.put("role", user.getRole());
 
