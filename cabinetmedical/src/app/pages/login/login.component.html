@@ -6,17 +6,42 @@
         <p>Accédez à votre espace personnel</p>
       </div>
       <div class="login-form">
-        <form>
+        <form (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Entrez votre email" required />
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="Entrez votre email"
+              required
+              class="form-control"
+            />
+            <div *ngIf="email === '' && isSubmitting" class="error-msg">
+              L'email est requis.
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" placeholder="Entrez votre mot de passe" required />
+            <input
+              type="password"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="Entrez votre mot de passe"
+              required
+              class="form-control"
+            />
+            <div *ngIf="password === '' && isSubmitting" class="error-msg">
+              Le mot de passe est requis.
+            </div>
           </div>
-          <button type="submit" class="btn-login">Se connecter</button>
+          <button type="submit" class="btn-login" [disabled]="isSubmitting">
+            Se connecter
+          </button>
         </form>
+        <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
         <p class="signup-link">
           Pas encore inscrit ? <a routerLink="/signup">Créer un compte</a>
         </p>

@@ -1,6 +1,4 @@
 package com.project.cabinet.auth;
-
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.cabinet.Enum.Role;
 import com.project.cabinet.Model.User;
@@ -12,7 +10,6 @@ import com.project.cabinet.token.TokenType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,7 +41,7 @@ public class AuthenticationService {
             .lastName(request.getLastname())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
-            .role(role) // Assign the role here
+            .role(role)
             .build();
 
     repository.save(user);
@@ -85,9 +82,8 @@ public class AuthenticationService {
               .build();
 
     } catch (Exception e) {
-      // Log exception for debugging
       System.err.println("Authentication failed: " + e.getMessage());
-      throw e; // Re-throw exception
+      throw e;
     }
   }
 

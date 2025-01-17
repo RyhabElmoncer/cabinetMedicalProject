@@ -27,7 +27,6 @@ export class SignupComponent {
     private authService: AuthService,
     private router: Router
   ) {
-    // Initialisation du formulaire
     this.signupForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -37,7 +36,6 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    // Si le formulaire est invalide, stoppez l'exécution
     if (this.signupForm.invalid) return;
 
     this.isSubmitting = true;
@@ -45,7 +43,6 @@ export class SignupComponent {
 
     const formData = this.signupForm.value;
 
-    // Appeler l'API pour l'inscription
     this.authService.register(formData).subscribe({
       next: () => {
         this.isSubmitting = false;

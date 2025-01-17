@@ -19,7 +19,7 @@ public class Token {
   @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incrémentation pour MySQL
   private Long id;
 
-  @Column(nullable = false, unique = true) // Token doit être unique
+  @Column(nullable = false, unique = true, length = 512)
   private String token;
 
   @Enumerated(EnumType.STRING) // Pour stocker l'énumération en tant que chaîne de texte
