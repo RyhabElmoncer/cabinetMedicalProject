@@ -33,7 +33,8 @@ public class SecurityConfiguration {
             "/api/v1/auth/register",
             "/api/rendezvous/demander",
             "/api/rendezvous/all",
-            "/api/rendezvous/**"
+            "/api/rendezvous/**",
+            "/api/ordonnances/**"
     };
 
     private final JwtAuthenticationFilter jwtAuthFilter;
