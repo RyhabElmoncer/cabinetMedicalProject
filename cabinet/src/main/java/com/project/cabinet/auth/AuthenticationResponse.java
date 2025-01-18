@@ -19,4 +19,5 @@ public class AuthenticationResponse {
   private String refreshToken;
   private String message;
   private String role ;
+  private Long id;
 }

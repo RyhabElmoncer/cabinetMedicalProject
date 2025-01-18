@@ -3,6 +3,7 @@ package com.project.cabinet.Model;
 import com.project.cabinet.Enum.StatusRendezVous;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class RendezVous {
@@ -13,16 +14,21 @@ public class RendezVous {
 
     private LocalDateTime date;
 
+    public LocalTime getHeure() {
+        return heure;
+    }
+
+    public void setHeure(LocalTime heure) {
+        this.heure = heure;
+    }
+
+    private LocalTime heure; // L'heure du rendez-vous
     @Enumerated(EnumType.STRING)
     private StatusRendezVous status;
-
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private User patient;
 
-    @ManyToOne
-    @JoinColumn(name = "docteur_id", nullable = false)
-    private User docteur;
 
     // Getters et Setters
     public Long getId() {
@@ -57,11 +63,4 @@ public class RendezVous {
         this.patient = patient;
     }
 
-    public User getDocteur() {
-        return docteur;
-    }
-
-    public void setDocteur(User docteur) {
-        this.docteur = docteur;
-    }
-}
+   }

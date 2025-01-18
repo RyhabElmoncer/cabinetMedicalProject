@@ -37,7 +37,12 @@ export class LoginComponent {
   
     this.authService.authenticate(credentials).subscribe(
       (response) => {
-        const role = response.role;  // Assurez-vous que 'role' est correct dans la réponse
+        const userId = response.id; // Assurez-vous que 'id' est présent dans la réponse
+        const role = response.role; // Assurez-vous que 'role' est correct dans la réponse
+  
+        // Stocker l'ID utilisateur localement
+        localStorage.setItem('userId', userId.toString());
+  
         this.redirectToDashboard(role);
         this.isSubmitting = false;
       },
@@ -48,7 +53,6 @@ export class LoginComponent {
     );
   }
   
-
   redirectToDashboard(role: string) {
     switch (role) {
       case 'DOCTEUR':

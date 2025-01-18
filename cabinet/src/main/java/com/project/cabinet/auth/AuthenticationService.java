@@ -78,7 +78,8 @@ public class AuthenticationService {
       return AuthenticationResponse.builder()
               .accessToken(jwtToken)
               .refreshToken(refreshToken)
-              .role(user.getRole().toString()) // Convert role to String
+              .role(user.getRole().toString())
+              .id(user.getId())// Convert role to String
               .build();
 
     } catch (Exception e) {

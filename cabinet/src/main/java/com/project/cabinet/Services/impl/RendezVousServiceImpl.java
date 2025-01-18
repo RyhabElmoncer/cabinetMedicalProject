@@ -27,24 +27,33 @@ public class RendezVousServiceImpl implements RendezVousService {
     private RendezVousMapper rendezVousMapper;
 
     private static final Long DOCTEUR_ID = 1L; // ID du docteur unique
-
     @Override
     public RendezVousDTO demanderRendezVous(RendezVousDTO rendezVousDTO) {
+        // Vérifiez si les informations minimales nécessaires sont fournies
+        if (rendezVousDTO.getPatient() == null || rendezVousDTO.getPatient().getId() == null) {
+            throw new IllegalArgumentException("Les informations du patient sont incomplètes ou manquantes.");
+        }
+
+        // Mapper le DTO vers l'entité
         RendezVous rendezVous = rendezVousMapper.toEntity(rendezVousDTO);
 
-        // Récupérer le patient
-        rendezVous.setPatient(userRepository.findById(String.valueOf(rendezVousDTO.getPatient().getId()))
-                .orElseThrow(() -> new IllegalArgumentException("Patient introuvable.")));
+        // Sauvegarder dans la base de données
+        RendezVous savedRendezVous = rendezVousRepository.save(rendezVous);
 
-        // Récupérer le docteur unique
-        rendezVous.setDocteur(userRepository.findById(String.valueOf(DOCTEUR_ID))
-                .orElseThrow(() -> new IllegalArgumentException("Docteur introuvable.")));
-
-        // Sauvegarder le rendez-vous
-        rendezVous = rendezVousRepository.save(rendezVous);
-
-        return rendezVousMapper.toDto(rendezVous);
+        // Retourner le DTO correspondant
+        return rendezVousMapper.toDto(savedRendezVous);
     }
+    @Override
+    public List<RendezVousDTO> getRendezVousByPatientId(Long patientId) {
+        // Récupère les rendez-vous pour un patient donné
+        List<RendezVous> rendezVousList = rendezVousRepository.findByPatientId(patientId);
+
+        // Utilise le mapper pour convertir les entités en DTO
+        return rendezVousList.stream()
+                .map(rendezVousMapper::toDto)
+                .toList();
+    }
+
 
     @Override
     public List<RendezVousDTO> getAllRendezVous() {

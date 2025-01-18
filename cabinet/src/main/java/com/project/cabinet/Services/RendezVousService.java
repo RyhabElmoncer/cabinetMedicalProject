@@ -8,4 +8,6 @@ public interface RendezVousService {
     List<RendezVousDTO> getAllRendezVous();
     RendezVousDTO accepterRendezVous(Long id);
     RendezVousDTO refuserRendezVous(Long id);
+    List<RendezVousDTO> getRendezVousByPatientId(Long patientId);
+
 }

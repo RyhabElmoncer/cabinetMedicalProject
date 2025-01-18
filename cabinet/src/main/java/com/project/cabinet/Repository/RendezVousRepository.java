@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RendezVousRepository extends JpaRepository<RendezVous, String>  {
     List<RendezVous> findByPatientId(Long patientId);
+
 }
